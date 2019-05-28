@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import Joke from "./Joke";
+
+// useEffect - used to apply side effect to the react components. Like setting interval or fetching data, etc
 
 function App() {
   // we will be adding a search bar to this project
@@ -34,6 +37,8 @@ function App() {
         />
         <button onClick={searchQuery}>Search</button>
       </div>
+      <hr />
+      <Joke />
     </div>
   );
 }

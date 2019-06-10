@@ -19,11 +19,11 @@ function Tasks() {
   return (
     <div>
       <h3>Tasks</h3>
-      <div className='form'>
-        <input type='text' value={taskText} onChange={updateTaskText} />
+      <div className="form">
+        <input type="text" value={taskText} onChange={updateTaskText} />
         <button onClick={addTask}>Add Task</button>
       </div>
-      <div className='task-list'>
+      <div className="task-list">
         {tasks.map(task => {
           const { id, taskText } = task;
 

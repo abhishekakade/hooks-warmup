@@ -4,6 +4,8 @@ import Stories from "./Stories";
 
 // useEffect - used to apply side effect to the react components. Like setting interval or fetching data, etc
 
+// You can use arrow function for App but you won't be able to use this keyword
+// function declaration is more preferred in React documentation so its better to go with that
 function App() {
   // we will be adding a search bar to this project
   // we will need to use state to get user search query

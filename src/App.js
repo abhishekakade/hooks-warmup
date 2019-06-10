@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Joke from "./Joke";
 import Stories from "./Stories";
+import Tasks from "./Tasks";
 
 // useEffect - used to apply side effect to the react components. Like setting interval or fetching data, etc
 
@@ -42,6 +43,8 @@ function App() {
       </div>
       <hr />
       <Joke />
+      <hr />
+      <Tasks />
       <hr />
       <Stories />
     </div>

@@ -1,10 +1,39 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import uuid from "uuid/v4";
+
+const TASKS_STORAGE_KEY = "TASKS_STORAGE_KEY";
+
+const storeTasks = tasksMap => {
+  localStorage.setItem(TASKS_STORAGE_KEY, JSON.stringify(tasksMap));
+};
+
+const readStoredTasks = () => {
+  // used JSON.parse because it returns stringified object values but we need the object itself
+  // instead of returning directly we will check if it is null or not because if its null, app will crash
+  // return JSON.parse(localStorage.getItem("TASKS_STORAGE_KEY"));
+
+  const tasksMap = JSON.parse(localStorage.getItem("TASKS_STORAGE_KEY"));
+
+  // if tasksMap is null - which is if no tasks have been set yet, then return empty arrays
+  // if tasksMap has any tasks, then return the existing tasks
+  return tasksMap ? tasksMap : { tasks: [], completedTasks: [] };
+};
 
 function Tasks() {
   const [taskText, setTaskText] = useState("");
-  const [tasks, setTasks] = useState([]);
-  const [completedTasks, setCompletedTasks] = useState([]);
+
+  // calling it before we apply values to tasks and completedTasks
+  const storedTasks = readStoredTasks();
+  // const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState(storedTasks.tasks);
+  // const [completedTasks, setCompletedTasks] = useState([]);
+  const [completedTasks, setCompletedTasks] = useState(
+    storedTasks.completedTasks
+  );
+
+  useEffect(() => {
+    storeTasks({ tasks, completedTasks });
+  });
 
   const updateTaskText = event => {
     setTaskText(event.target.value);

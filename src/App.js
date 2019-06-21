@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Joke from "./Joke";
 import Stories from "./Stories";
 import Tasks from "./Tasks";
+import Gallery from "./Gallery";
 
 // useEffect - used to apply side effect to the react components. Like setting interval or fetching data, etc
 
@@ -13,6 +14,8 @@ function App() {
   // useState() hook itself takes an argument which is the value for the initial state
   // in this case it will be an empty string
   const [userQuery, setUserQuery] = useState("");
+
+  const [showGallery, setShowGallery] = useState(true);
 
   // onChange has event so we can use event in the callback function
   const updateUserQuery = event => {
@@ -30,10 +33,14 @@ function App() {
     window.open(`https://www.google.com/search?q=${userQuery}`, "_blank");
   };
 
+  const toggleShowGallery = () => {
+    setShowGallery(!showGallery);
+  };
+
   return (
-    <div className='App'>
+    <div className="App">
       <h1>Hello, Abhishek!</h1>
-      <div className='form'>
+      <div className="form">
         <input
           value={userQuery}
           onChange={updateUserQuery}
@@ -45,6 +52,13 @@ function App() {
       <Joke />
       <hr />
       <Tasks />
+      <hr />
+      <div>
+        {showGallery ? <Gallery /> : null}
+        <button onClick={toggleShowGallery}>
+          {showGallery ? "Hide" : "Show"} Gallery
+        </button>
+      </div>
       <hr />
       <Stories />
     </div>
